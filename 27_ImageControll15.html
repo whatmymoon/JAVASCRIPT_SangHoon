@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>27_ImageControll15.html</title>
+<style type="text/css">
+    
+    #view{position:relative; width:600px; height:400px; margin:0 auto; border:1px dashed black; overflow:hidden;}
+    #imgs{position:absolute; width:4800px; height:400px; left:0; top:0; border:1px dashed red; transition:0.3s;}
+    img{width:600px; height:400px;}
+    #remote{position:relative; width:350px; height:50px; border:1px solid white; margin:0 auto; top:350px; text-align:center;}
+
+    ul{ list-style:none; padding:0; margin:0; height:40px; display:inline-block;}
+    li{ float:left; width:20px; height:20px; background:white; border-radius:50%; margin:15px 4px; font-weight:bold; font-size:90%; line-height:20px; text-align:center; cursor:default; border:2px solid black;}
+</style>
+<script type="text/javaScript">
+    var imgNum=0;
+    var timer;
+    var flag = false;
+
+    function move(x){
+        if( flag == true ) return;
+        dist = x * -600;
+        document.getElementById("imgs").style.left = dist + "px";
+        imgNum = x;
+    }
+    function moveLeft(){
+        if( flag == true ) return;
+        if(imgNum == 0) return;
+        imgNum--;
+        dist = imgNum * -600;
+        document.getElementById("imgs").style.left = dist + "px";
+    }
+    function moveRight(){
+        if( flag == true ) return;
+        if(imgNum == 7) return;
+        imgNum++;
+        dist = imgNum * -600;
+        document.getElementById("imgs").style.left = dist + "px";
+    }
+    // 자동버튼은 토글기능을 부여해서 자동과 멈춤을 번갈아서 동작되게 코딩하세요
+    // 자동 플레이가 진행중인 동안은 번호 좌우 버튼이 동작하지 않도록 코딩해주세요
+    function moveAuto(){
+        if( flag == true ){
+            flag = false;
+            window.clearInterval(timer);
+            document.getElementById("btn").innerHTML = '▶';
+        }else{
+            flag = true;
+            document.getElementById("btn").innerHTML = '■';
+            timer = window.setInterval(function(){
+                imgNum++;
+                if(imgNum > 7) imgNum = 0;
+                var dist = -600 * imgNum;
+                document.getElementById("imgs").style.left = dist + "px";
+            }, 1000);
+        }
+    }
+</script>
+</head>
+<body>
+    <div id="view">
+        <div id="imgs">
+            <img src="images/Koala.jpg"/><img src="images/Chrysanthemum.jpg"/><img src="images/Desert.jpg"/><img src="images/Hydrangeas.jpg"/><img src="images/Jellyfish.jpg"/><img src="images/Lighthouse.jpg"/><img src="images/Penguins.jpg"/><img src="images/Tulips.jpg"/>
+        </div>
+
+        <div id="remote">
+            <ul>
+                <li onClick="moveLeft();">◁</li>
+                <li onClick="move(0);">1</li>
+                <li onClick="move(1);">2</li>
+                <li onClick="move(2);">3</li>
+                <li onClick="move(3);">4</li>
+                <li onClick="move(4);">5</li>
+                <li onClick="move(5);">6</li>
+                <li onClick="move(6);">7</li>
+                <li onClick="move(7);">8</li>
+                <li onClick="moveRight();">▷</li>
+                <li id="btn" onClick="moveAuto();">▶</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

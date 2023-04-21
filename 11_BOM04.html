@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>11_BOM04.html</title>
+<script type="text/javascript">
+    // navigator 객체
+    // - 웹페이지를 실행하고 있는 브라우저에 대한 정보를 가짐.
+    var output = '';
+    for(var key in navigator){
+        output += '<h3>※ ' + key + ' : ' + navigator[key] + '</h3>';
+    }
+    output += '<h3>' + navigator.userAgent + '</h3>';
+    document.write( output );
+
+    // navigator 가 제공하는 핵심기능 : 접속하는 디바이스(엄밀히 말하면 운영체제)에 따라 표시되는 페이지
+    // (엄밀히 말하면 표시될 페이지의 경로를 달리해서)를 표시합니다.
+
+    if( (navigator.userAgent.match(/iPone/i) ) || (navigator.userAgent.match(/iPod/i))
+    || (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Windows CE/i))
+    || (navigator.userAgent.match(/Symbian/i)) || (navigator.userAgent.match(/BlackBerry/i))
+    || (navigator.userAgent.match(/Android/i))){
+        // 스마트 기기용 페이지로 이동
+        location.href='mobile.html';
+    }else{
+        // PC용 페이지로 이동
+        location.href='desktop.html';
+    }
+
+    // 스마트폰에 넣을 주소 http://192.168.0.73:5500/11_BOM04.html
+    // 와이파이 EZEN_5G / ezen0008
+
+</script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>14_ImageControll02.html</title>
+<script type="text/javascript">
+    // 그림을 클릭하면 숫자하나를 입력 받아서 "숫자.jpg" 파일로 그림을 바꾸는 코드를 완성해주세요.
+    function changeImg(){
+        // document.getElementById("img1").src = "images/3.jpg";
+        // 앞선 예제 코드에서 파일 이름을 변경하는 명령 - 파일 경로와 이름이 string 데이터라는 점을 감안해서 작성해주세요.
+        var imgNumber= Number(prompt('숫자를 입력하세요', '1~10'));  // 형 변환 (문자열 -> 숫자)  // 숫자 -> 문자열 String()
+        document.getElementById("target").src = "images/" + imgNumber + ".jpg";
+
+        // var number = prompt("숫자를 입력하세요(1~10)", "1");
+        // var filename = "images/" + number + ".jpg";
+        // document.getElementById("target").src = filename;
+    }
+</script>
+</head>
+<body>
+    <img src="images/1.jpg" id="target" onClick="changeImg();"/>
+</body>
+</html>

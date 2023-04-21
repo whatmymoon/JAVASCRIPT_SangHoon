@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>20_ImageControll08.html</title>
+<style type="text/css">
+    #view{position:relative; width:170px; height:255px; border:3px solid blue; left:100px; overflow:hidden; }
+    #imgs{position:absolute; width:850px; height:255px; left:0; transition:0.2s; border:2px solid red;}
+</style>
+<script type="text/javascript">
+    // 1초에 한번씩 다음 이미지로 이동. 이미지에 마우스포인터가 올라가면 멈춤. 빠져나가면 다시 시작
+    var imgNum=0;
+    var timer;
+    function start(){
+        timer = window.setInterval(function(){
+            imgNum++;
+            if(imgNum > 4) imgNum = 0;
+            var dist = imgNum * 170 * (-1);
+            document.getElementById("imgs").style.left = dist + "px";
+        }, 1500);
+    }
+    function stop(){
+        window.clearInterval(timer);
+    }
+</script>
+</head>
+<body onload="start();">
+    <div id="view" onmouseover="stop();" onmouseout="start()"> 
+        <div id="imgs"> 
+            <img src="images/1.jpg"/><img src="images/2.jpg"/><img src="images/3.jpg"/><img src="images/4.jpg"/><img src="images/5.jpg"/>
+        </div>
+    </div>
+</body>
+</html>
